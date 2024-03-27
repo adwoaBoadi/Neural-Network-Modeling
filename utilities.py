@@ -9,11 +9,35 @@ from sklearn.preprocessing import LabelEncoder, OneHotEncoder,StandardScaler
 #Imports a class for imputing missing values in datasets.
 from sklearn.impute import SimpleImputer
 #Imports the Matplotlib library for creating visualizations.
-from matplotlib import pyplot as plt
+import matplotlib.pyplot as plt
 # Imports the Seaborn library for statistical data visualization.
 import seaborn as sns
 # Time related functions.
 import time
+
+#Imports functions for evaluating the performance of machine learning models
+from sklearn.metrics import confusion_matrix, f1_score,accuracy_score, recall_score, precision_score, classification_report
+
+
+#Imports the tensorflow,keras and layers.
+import tensorflow
+import tensorflow as tf
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
+from tensorflow.keras.layers import Dense, Input, Dropout,BatchNormalization
+from tensorflow.keras import backend
+
+# To oversample the data
+from imblearn.over_sampling import SMOTE #over sampling
+
+
+
+# to suppress unnecessary warnings
+import warnings
+warnings.filterwarnings("ignore")
+
+
+
 
 # saving some functions for exploratory data analysis
 def histogram_boxplot(data, feature, figsize=(15, 10), kde=False, bins=None):
@@ -46,6 +70,21 @@ def histogram_boxplot(data, feature, figsize=(15, 10), kde=False, bins=None):
     ax_hist2.axvline(
         data[feature].median(), color="black", linestyle="-"
     )  # Add median to the histogram
+
+# Set the seed using keras.utils.set_random_seed. This will set:
+# 1) `numpy` seed
+# 2) backend random seed
+# 3) `python` random seed
+tf.keras.utils.set_random_seed(812)
+
+# If using TensorFlow, this will make GPU ops as deterministic as possible,
+# but it will affect the overall performance, so be mindful of that.
+tf.config.experimental.enable_op_determinism()
+
+
+
+
+
 
 
 
