@@ -37,6 +37,16 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
+# Set the seed using keras.utils.set_random_seed. This will set:
+# 1) `numpy` seed
+# 2) backend random seed
+# 3) `python` random seed
+tf.keras.utils.set_random_seed(812)
+
+# If using TensorFlow, this will make GPU ops as deterministic as possible,
+# but it will affect the overall performance, so be mindful of that.
+tf.config.experimental.enable_op_determinism()
+
 
 
 # saving some functions for exploratory data analysis
@@ -70,16 +80,6 @@ def histogram_boxplot(data, feature, figsize=(15, 10), kde=False, bins=None):
     ax_hist2.axvline(
         data[feature].median(), color="black", linestyle="-"
     )  # Add median to the histogram
-
-# Set the seed using keras.utils.set_random_seed. This will set:
-# 1) `numpy` seed
-# 2) backend random seed
-# 3) `python` random seed
-tf.keras.utils.set_random_seed(812)
-
-# If using TensorFlow, this will make GPU ops as deterministic as possible,
-# but it will affect the overall performance, so be mindful of that.
-tf.config.experimental.enable_op_determinism()
 
 
 
